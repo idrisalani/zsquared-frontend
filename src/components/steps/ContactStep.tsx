@@ -8,7 +8,7 @@
  */
 
 import { User, Mail, Phone, MapPin, FileText, AlertCircle, CheckCircle } from 'lucide-react';
-import type { CustomerInfo } from '../../types';
+import type { CustomerInfo } from '../../types/index';
 
 interface ContactStepProps {
   customerInfo: CustomerInfo;

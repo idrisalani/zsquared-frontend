@@ -7,7 +7,7 @@
  */
 
 import { Zap, Clock, Users } from 'lucide-react';
-import type { Service } from '../../types';
+import type { Service } from '../../types/index';
 
 interface ServiceSelectionStepProps {
   selectedServiceId: string | null;

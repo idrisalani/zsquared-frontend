@@ -9,7 +9,7 @@
 import { useState } from 'react';
 import { GuestCountInput } from '../inputs/GuestCountInput';
 import { EventHoursInput } from '../inputs/EventHoursInput';
-import type { Service } from '../../types';
+import type { Service } from '../../types/index';
 
 interface BookingDetailsStepProps {
   service: Service;

@@ -7,7 +7,7 @@
  */
 
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
-import type { Service } from '../../types';
+import type { Service } from '../../types/index';
 
 interface ServiceCardProps {
   service: Service;
@@ -49,7 +49,7 @@ export function ServiceCard({ service, isSelected = false, onSelect }: ServiceCa
     >
       {/* Service Image */}
       {service.image && (
-        <div className="relative h-40 overflow-hidden bg-gradient-to-br from-slate-700 to-slate-800">
+        <div className="relative h-40 overflow-hidden bg-linear-to-br from-slate-700 to-slate-800">
           <img
             src={service.image}
             alt={service.name}
