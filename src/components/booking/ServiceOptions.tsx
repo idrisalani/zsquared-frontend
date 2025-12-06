@@ -1,80 +1,89 @@
-/**
- * Service Options Component
- * - Display service-specific customization options
- * - Radio buttons or checkboxes
- * - Price display
- * - Professional layout
- */
-
-import React from 'react';
-import { ServiceOption, Service } from '../../types';
+import { ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import type { ServiceOption, ServiceOptionValue } from '../../types/index';
 
 interface ServiceOptionsProps {
-  service: Service;
   options: ServiceOption[];
-  selectedOptions: Record<string, string>;
-  onOptionChange: (optionId: string, valueId: string) => void;
+  selectedOptions: Record<string, string | number>;
+  onSelectOption: (optionName: string, value: string | number) => void;
 }
 
 export function ServiceOptions({
-  service,
   options,
   selectedOptions,
-  onOptionChange
+  onSelectOption,
 }: ServiceOptionsProps) {
-  if (options.length === 0) {
-    return null;
-  }
+  const [expandedOptions, setExpandedOptions] = useState<Set<string>>(new Set());
+
+  const toggleExpanded = (optionName: string) => {
+    const newExpanded = new Set(expandedOptions);
+    if (newExpanded.has(optionName)) {
+      newExpanded.delete(optionName);
+    } else {
+      newExpanded.add(optionName);
+    }
+    setExpandedOptions(newExpanded);
+  };
 
   return (
-    <div className="space-y-6">
-      <h4 className="font-semibold text-white text-md">Customization Options</h4>
+    <div className="space-y-4">
+      {options.map((option) => {
+        const isExpanded = expandedOptions.has(option.name);
+        const values = option.values || [];
+        const selectedValue = selectedOptions[option.name];
 
-      {options.map((option) => (
-        <div key={option.id} className="space-y-3">
-          <div>
-            <h5 className="font-medium text-white mb-2">{option.name}</h5>
-            {option.description && (
-              <p className="text-slate-400 text-sm mb-3">{option.description}</p>
+        return (
+          <div key={option.name} className="rounded-xl border-2 border-gray-200 bg-white">
+            <button
+              onClick={() => toggleExpanded(option.name)}
+              className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition"
+            >
+              <div className="text-left">
+                <p className="font-semibold text-gray-900">{option.name}</p>
+                {selectedValue && (
+                  <p className="text-sm text-gray-600">
+                    Selected: {String(selectedValue)}
+                  </p>
+                )}
+              </div>
+              <ChevronDown
+                size={20}
+                className={`text-gray-600 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+              />
+            </button>
+
+            {isExpanded && (
+              <div className="border-t-2 border-gray-200 p-4 space-y-2">
+                {values.map((value: ServiceOptionValue) => {
+                  const additionalPrice = value.additionalPrice || 0;
+                  const label = String(value.label);
+                  
+                  return (
+                    <button
+                      key={label}
+                      onClick={() => onSelectOption(option.name, value.label)}
+                      className={`w-full text-left px-3 py-2 rounded-lg transition ${
+                        selectedValue === value.label
+                          ? 'bg-blue-100 border-2 border-blue-500 text-blue-900 font-semibold'
+                          : 'bg-gray-50 border-2 border-gray-200 text-gray-900 hover:bg-gray-100'
+                      }`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <span>{label}</span>
+                        {additionalPrice > 0 && (
+                          <span className="text-sm text-gray-600">
+                            +${additionalPrice.toFixed(2)}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             )}
           </div>
-
-          <div className="space-y-2">
-            {option.values.map((value) => (
-              <label
-                key={value.id}
-                className="flex items-center gap-3 p-4 bg-slate-700/50 hover:bg-slate-700 rounded-lg cursor-pointer transition"
-              >
-                <input
-                  type={option.allowMultiple ? 'checkbox' : 'radio'}
-                  name={option.id}
-                  value={value.id}
-                  checked={
-                    option.allowMultiple
-                      ? selectedOptions[option.id]?.includes(value.id) || false
-                      : selectedOptions[option.id] === value.id
-                  }
-                  onChange={() => onOptionChange(option.id, value.id)}
-                  className="w-5 h-5 rounded accent-cyan-500 cursor-pointer"
-                />
-
-                <div className="flex-1">
-                  <p className="font-medium text-white text-sm">{value.value}</p>
-                  {value.description && (
-                    <p className="text-slate-400 text-xs mt-1">{value.description}</p>
-                  )}
-                </div>
-
-                {value.additionalPrice > 0 && (
-                  <span className="font-semibold text-cyan-400 whitespace-nowrap">
-                    +${value.additionalPrice.toFixed(2)}
-                  </span>
-                )}
-              </label>
-            ))}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

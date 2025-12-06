@@ -1,218 +1,122 @@
-/**
- * Booking Store - Zustand state management
- * - Central state for entire booking flow
- * - Step management
- * - Form data persistence
- * - Real-time pricing
- * - Error handling
- */
-
 import { create } from 'zustand';
-import { Service, CustomerInfo } from '../types';
-import { api } from '../utils/api';
+import type { Service, CustomerInfo } from '../types';
 
-export interface BookingState {
-  // Current step (1-4)
-  currentStep: number;
-
-  // Step 1: Date selection
-  selectedDate: string | null;
-
-  // Step 2: Service selection
-  selectedService: Service | null;
-
-  // Step 3: Customization
+interface BookingData {
+  date: string;
+  options: Record<string, string | number>;
+  customerInfo: CustomerInfo;
+  serviceId: string;
   guestCount: number;
   eventHours: number;
-  selectedOptions: Record<string, string>;
-
-  // Step 4: Contact info
-  customerInfo: CustomerInfo;
-
-  // Pricing
-  pricing: {
-    baseServicePrice: number;
-    addOnsTotal: number;
-    taxAmount: number;
-    totalPrice: number;
-  };
-
-  // UI State
-  loading: boolean;
-  errors: Record<string, string>;
-  bookingId: string | null;
-
-  // Actions
-  setStep: (step: number) => void;
-  setSelectedDate: (date: string) => void;
-  setSelectedService: (service: Service) => void;
-  setGuestCount: (count: number) => void;
-  setEventHours: (hours: number) => void;
-  setSelectedOptions: (options: Record<string, string>) => void;
-  setCustomerInfo: (field: keyof CustomerInfo, value: string) => void;
-  updatePricing: (pricing: any) => void;
-  validateStep: (step: number) => Promise<boolean>;
-  createBooking: () => Promise<string>;
-  reset: () => void;
-  setError: (field: string, error: string) => void;
-  clearErrors: () => void;
 }
 
-const initialState = {
-  currentStep: 1,
-  selectedDate: null,
-  selectedService: null,
-  guestCount: 30,
-  eventHours: 2,
-  selectedOptions: {},
-  customerInfo: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    streetAddress: '',
-    city: '',
-    postalCode: '',
-    country: 'USA'
-  },
-  pricing: {
-    baseServicePrice: 0,
-    addOnsTotal: 0,
-    taxAmount: 0,
-    totalPrice: 0
-  },
-  loading: false,
-  errors: {},
-  bookingId: null
-};
+interface BookingState {
+  selectedService: Service | null;
+  selectedDate: string | null;
+  guestCount: number;
+  eventHours: number;
+  selectedOptions: Record<string, string | number>;
+  customer: CustomerInfo | null;
+  bookings: BookingData[];
+  loading: boolean;
+  error: string | null;
+
+  setSelectedService: (service: Service | null) => void;
+  setSelectedDate: (date: string) => void;
+  setGuestCount: (count: number) => void;
+  setEventHours: (hours: number) => void;
+  setSelectedOption: (name: string, value: string | number) => void;
+  setCustomer: (customer: CustomerInfo) => void;
+  submitBooking: () => Promise<string | null>;
+  reset: () => void;
+}
 
 export const useBookingStore = create<BookingState>((set, get) => ({
-  ...initialState,
+  selectedService: null,
+  selectedDate: null,
+  guestCount: 1,
+  eventHours: 2,
+  selectedOptions: {},
+  customer: null,
+  bookings: [],
+  loading: false,
+  error: null,
 
-  setStep: (step) => set({ currentStep: step }),
-
+  setSelectedService: (service) => set({ selectedService: service }),
+  
   setSelectedDate: (date) => set({ selectedDate: date }),
+  
+  setGuestCount: (count) => set({ guestCount: Math.max(1, count) }),
+  
+  setEventHours: (hours) => set({ eventHours: Math.max(1, hours) }),
+  
+  setSelectedOption: (name, value) =>
+    set((state) => ({
+      selectedOptions: {
+        ...state.selectedOptions,
+        [name]: value,
+      },
+    })),
 
-  setSelectedService: (service) => {
-    set({ selectedService: service });
-    // Auto-set to min requirements
-    set({
-      guestCount: Math.max(service.minGuests, 30),
-      eventHours: Math.max(service.minHours, 2)
-    });
-  },
+  setCustomer: (customer) => set({ customer }),
 
-  setGuestCount: (count) => set({ guestCount: count }),
-
-  setEventHours: (hours) => set({ eventHours: hours }),
-
-  setSelectedOptions: (options) => set({ selectedOptions: options }),
-
-  setCustomerInfo: (field, value) => {
+  submitBooking: async () => {
     const state = get();
-    set({
-      customerInfo: {
-        ...state.customerInfo,
-        [field]: value
-      }
-    });
-  },
 
-  updatePricing: (pricing) => set({ pricing }),
-
-  validateStep: async (step) => {
-    const state = get();
-    const errors: Record<string, string> = {};
-
-    // Step 1: Date validation
-    if (step === 1) {
-      if (!state.selectedDate) {
-        errors.selectedDate = 'Please select a date';
-      }
+    if (!state.selectedService || !state.selectedDate || !state.customer) {
+      set({ error: 'Missing required booking information' });
+      return null;
     }
 
-    // Step 2: Service validation
-    if (step === 2) {
-      if (!state.selectedService) {
-        errors.selectedService = 'Please select a service';
-      }
-    }
-
-    // Step 3: Customization validation
-    if (step === 3) {
-      if (!state.selectedService) {
-        errors.customization = 'No service selected';
-      } else {
-        if (state.guestCount < state.selectedService.minGuests) {
-          errors.guestCount = `Minimum ${state.selectedService.minGuests} guests required`;
-        }
-        if (state.eventHours < state.selectedService.minHours) {
-          errors.eventHours = `Minimum ${state.selectedService.minHours} hours required`;
-        }
-      }
-    }
-
-    // Step 4: Contact info validation
-    if (step === 4) {
-      if (!state.customerInfo.firstName) errors.firstName = 'Required';
-      if (!state.customerInfo.lastName) errors.lastName = 'Required';
-      if (!state.customerInfo.email) errors.email = 'Required';
-      if (!state.customerInfo.phone) errors.phone = 'Required';
-      if (!state.customerInfo.city) errors.city = 'Required';
-      if (!state.customerInfo.postalCode) errors.postalCode = 'Required';
-    }
-
-    set({ errors });
-    return Object.keys(errors).length === 0;
-  },
-
-  createBooking: async () => {
-    const state = get();
-    set({ loading: true });
+    set({ loading: true, error: null });
 
     try {
-      // Validate before submission
-      const isValid = await get().validateStep(4);
-      if (!isValid) {
-        return '';
+      // Validate booking
+      const minGuests = state.selectedService.minGuests ?? 1;
+      const minHours = state.selectedService.minHours ?? 1;
+
+      if (state.guestCount < minGuests) {
+        throw new Error(`Minimum ${minGuests} guests required`);
       }
 
-      const bookingData = {
-        serviceId: state.selectedService!.id,
-        bookingDate: state.selectedDate!,
+      if (state.eventHours < minHours) {
+        throw new Error(`Minimum ${minHours} hours required`);
+      }
+
+      // Create booking data
+      const bookingData: BookingData = {
+        date: state.selectedDate,
+        options: state.selectedOptions,
+        customerInfo: state.customer,
+        serviceId: String(state.selectedService.id),
         guestCount: state.guestCount,
         eventHours: state.eventHours,
-        selectedOptions: state.selectedOptions,
-        customer: state.customerInfo
       };
 
-      const result = await api.createBooking(bookingData);
-      
-      set({ bookingId: result.id });
-      return result.id;
-    } catch (error: any) {
-      set({
-        errors: {
-          submit: error.response?.data?.error?.message || 'Failed to create booking'
-        }
-      });
-      return '';
-    } finally {
-      set({ loading: false });
+      // In a real app, this would be an API call
+      const orderId = `ZSQ${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
+
+      set((state) => ({
+        bookings: [...state.bookings, bookingData],
+        loading: false,
+      }));
+
+      return orderId;
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Booking failed';
+      set({ error: errorMessage, loading: false });
+      return null;
     }
   },
 
-  reset: () => set(initialState),
-
-  setError: (field, error) => {
-    const state = get();
+  reset: () =>
     set({
-      errors: {
-        ...state.errors,
-        [field]: error
-      }
-    });
-  },
-
-  clearErrors: () => set({ errors: {} })
+      selectedService: null,
+      selectedDate: null,
+      guestCount: 1,
+      eventHours: 2,
+      selectedOptions: {},
+      customer: null,
+      error: null,
+    }),
 }));

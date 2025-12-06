@@ -21,23 +21,33 @@ export interface Service {
   [key: string]: unknown;
 }
 
-export interface ServiceOption {
-  id: string;
-  serviceId: string;
-  name: string;
-  description?: string;
-  price: number;
-  required: boolean;
-  values?: ServiceOptionValue[];
-  [key: string]: unknown;
-}
+// export interface ServiceOption {
+//   id: string;
+//   serviceId: string;
+//   name: string;
+//   description?: string;
+//   price: number;
+//   required: boolean;
+//   values?: ServiceOptionValue[];
+//   [key: string]: unknown;
+// }
+
+// export interface ServiceOptionValue {
+//   id: string;
+//   optionId: string;
+//   value: string;
+//   priceModifier?: number;
+//   [key: string]: unknown;
+// }
 
 export interface ServiceOptionValue {
-  id: string;
-  optionId: string;
-  value: string;
-  priceModifier?: number;
-  [key: string]: unknown;
+  label: string | number;
+  additionalPrice: number;
+}
+
+export interface ServiceOption {
+  name: string;
+  values?: ServiceOptionValue[];
 }
 
 // Availability Types
@@ -204,4 +214,46 @@ export interface FilterOptions {
 export interface SortOptions {
   field: 'name' | 'price' | 'rating' | 'popularity';
   order: 'asc' | 'desc';
+}
+
+export interface FormInputProps {
+  label: string;
+  type?: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+  placeholder?: string;
+  required?: boolean;
+  icon?: 'mail' | 'phone';
+}
+
+export interface FormTextareaProps {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
+}
+
+export interface ProgressBarProps {
+  currentStep: number;
+  totalSteps: number;
+}
+
+export interface BookingRequest {
+  serviceId: string;
+  bookingDate: string;
+  guestCount: number;
+  eventHours: number;
+  selectedOptions: Record<string, string | number>;
+  customer: CustomerInfo;
+}
+
+export interface BookingResponse {
+  orderId: string;
+  status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
+  totalPrice: number;
+  bookingDate: string;
 }

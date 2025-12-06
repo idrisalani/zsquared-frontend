@@ -1,11 +1,4 @@
-/**
- * Reusable Textarea Component
- * - Multi-line input
- * - Auto-expand
- * - Validation styling
- */
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface FormTextareaProps {
   label: string;
@@ -13,8 +6,8 @@ interface FormTextareaProps {
   onChange: (value: string) => void;
   error?: string;
   placeholder?: string;
+  required?: boolean;
   rows?: number;
-  className?: string;
 }
 
 export function FormTextarea({
@@ -23,39 +16,30 @@ export function FormTextarea({
   onChange,
   error,
   placeholder,
-  rows = 3,
-  className = ''
+  required = false,
+  rows = 4,
 }: FormTextareaProps) {
-  const [isFocused, setIsFocused] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   return (
-    <div className={className}>
-      <label className="block text-sm font-semibold text-white mb-2">
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-gray-700">
         {label}
+        {required && <span className="text-red-600"> *</span>}
       </label>
-
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onBlur={() => setTouched(true)}
         placeholder={placeholder}
         rows={rows}
-        className={`
-          w-full px-4 py-3 rounded-lg text-sm
-          bg-slate-700/30 text-white placeholder-slate-500
-          border resize-none transition-all focus:outline-none
-          ${
-            error
-              ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/30'
-              : 'border-slate-600/50 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30'
-          }
-        `}
+        className={`w-full rounded-lg border-2 px-3 py-2 text-gray-900 placeholder-gray-400 outline-none transition resize-none ${
+          touched && error
+            ? 'border-red-400 bg-red-50 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+            : 'border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200'
+        }`}
       />
-
-      {error && (
-        <p className="mt-2 text-sm text-red-400">{error}</p>
-      )}
+      {touched && error && <p className="text-sm text-red-600 font-medium">{error}</p>}
     </div>
   );
 }

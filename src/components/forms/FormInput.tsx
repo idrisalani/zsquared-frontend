@@ -1,13 +1,5 @@
-/**
- * Reusable Form Input Component
- * - Email, text, tel, number inputs
- * - Validation styling
- * - Error messages
- * - Icons
- */
-
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, User, Lock } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
+import { useState } from 'react';
 
 interface FormInputProps {
   label: string;
@@ -17,7 +9,7 @@ interface FormInputProps {
   error?: string;
   placeholder?: string;
   required?: boolean;
-  className?: string;
+  icon?: 'mail' | 'phone';
 }
 
 export function FormInput({
@@ -27,59 +19,44 @@ export function FormInput({
   onChange,
   error,
   placeholder,
-  required,
-  className = ''
+  required = false,
+  icon,
 }: FormInputProps) {
-  const [isFocused, setIsFocused] = useState(false);
+  const [touched, setTouched] = useState(false);
 
-  const getIcon = () => {
-    switch (type) {
-      case 'email':
-        return <Mail size={16} />;
-      case 'tel':
-        return <Phone size={16} />;
-      case 'password':
-        return <Lock size={16} />;
+  const renderIcon = () => {
+    switch (icon) {
+      case 'mail':
+        return <Mail size={18} className="text-gray-400" />;
+      case 'phone':
+        return <Phone size={18} className="text-gray-400" />;
       default:
-        return <User size={16} />;
+        return null;
     }
   };
 
   return (
-    <div className={className}>
-      <label className="block text-sm font-semibold text-white mb-2">
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-gray-700">
         {label}
-        {required && <span className="text-red-400 ml-1">*</span>}
+        {required && <span className="text-red-600"> *</span>}
       </label>
-
       <div className="relative">
-        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-          {getIcon()}
-        </div>
-
+        {icon && <div className="absolute left-3 top-1/2 -translate-y-1/2">{renderIcon()}</div>}
         <input
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={() => setTouched(true)}
           placeholder={placeholder}
-          className={`
-            w-full pl-10 pr-4 py-3 rounded-lg text-sm
-            bg-slate-700/30 text-white placeholder-slate-500
-            border transition-all focus:outline-none
-            ${
-              error
-                ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/30'
-                : 'border-slate-600/50 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30'
-            }
-          `}
+          className={`w-full rounded-lg border-2 px-3 py-2 ${icon ? 'pl-10' : 'pl-3'} text-gray-900 placeholder-gray-400 outline-none transition ${
+            touched && error
+              ? 'border-red-400 bg-red-50 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+              : 'border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200'
+          }`}
         />
       </div>
-
-      {error && (
-        <p className="mt-2 text-sm text-red-400">{error}</p>
-      )}
+      {touched && error && <p className="text-sm text-red-600 font-medium">{error}</p>}
     </div>
   );
 }

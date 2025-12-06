@@ -1,116 +1,139 @@
-/**
- * Booking Summary Component
- * - Sticky sidebar
- * - Shows selected date, service, options
- * - Price breakdown
- * - Real-time updates
- */
-
-import React from 'react';
-import { Calendar, Users, Clock, DollarSign } from 'lucide-react';
-import { Service } from '../../types';
+import { CheckCircle, Calendar, Users, Clock, ShoppingCart } from 'lucide-react';
+import type { Service } from '../../types';
 
 interface BookingSummaryProps {
-  selectedDate: string | null;
   selectedService: Service | null;
+  selectedDate: string | null;
   guestCount: number;
   eventHours: number;
-  pricing: {
-    baseServicePrice: number;
-    addOnsTotal: number;
-    taxAmount: number;
-    totalPrice: number;
-  };
+  selectedOptions: Record<string, string | number>;
 }
 
 export function BookingSummary({
-  selectedDate,
   selectedService,
+  selectedDate,
   guestCount,
   eventHours,
-  pricing
+  selectedOptions,
 }: BookingSummaryProps) {
-  const formatPrice = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(amount);
+  if (!selectedService || !selectedDate) {
+    return null;
+  }
+
+  // EXPLICIT: Convert any value to a number (never returns string or number | string)
+  const toNumber = (value: string | number | undefined): number => {
+    // If it's already a number, return it
+    if (typeof value === 'number' && !isNaN(value)) {
+      return value;
+    }
+    // If it's a string, try to parse it
+    if (typeof value === 'string') {
+      const parsed = parseFloat(value);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    // Fallback for undefined
+    return 0;
   };
 
+  // EXPLICIT: basePrice is guaranteed to be a number (never string | number)
+  const basePrice: number = toNumber(selectedService.basePrice);
+  
+  // EXPLICIT: hoursAsNumber is guaranteed to be a number (never string | number)
+  const hoursAsNumber: number = toNumber(eventHours);
+  
+  // EXPLICIT: Calculate additional hours - both operands are definitely numbers
+  const hourlyAdditional: number = hoursAsNumber > 2 ? (hoursAsNumber - 2) * 50 : 0;
+  
+  // EXPLICIT: Calculate options total - convert each value to number before adding
+  const optionsTotal: number = Object.values(selectedOptions).reduce((sum: number, val: string | number) => {
+    const price: number = toNumber(val);
+    return sum + price;
+  }, 0);
+  
+  // EXPLICIT: Calculate total price - both are definitely numbers
+  const totalPrice: number = basePrice + hourlyAdditional + optionsTotal;
+
   return (
-    <div className="sticky top-8 bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 space-y-6">
-      <h3 className="text-lg font-bold text-white">Booking Summary</h3>
-
-      {/* Date */}
-      {selectedDate && (
-        <div className="flex gap-3">
-          <Calendar size={18} className="text-cyan-400 flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="text-slate-400 text-xs uppercase">Date</p>
-            <p className="text-white font-semibold">
-              {new Date(selectedDate).toLocaleDateString('en-US', {
-                weekday: 'short',
-                month: 'short',
-                day: 'numeric'
-              })}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Service */}
-      {selectedService && (
-        <div className="flex gap-3">
-          <span className="text-2xl">{selectedService.icon || '🎉'}</span>
-          <div className="flex-1">
-            <p className="text-slate-400 text-xs uppercase">Service</p>
-            <p className="text-white font-semibold">{selectedService.name}</p>
-          </div>
-        </div>
-      )}
-
-      {/* Details */}
-      <div className="space-y-2 pt-4 border-t border-slate-700/50">
-        <div className="flex gap-3 text-sm">
-          <Users size={16} className="text-cyan-400 flex-shrink-0 mt-0.5" />
-          <span className="text-slate-300">{guestCount} guests</span>
-        </div>
-        <div className="flex gap-3 text-sm">
-          <Clock size={16} className="text-cyan-400 flex-shrink-0 mt-0.5" />
-          <span className="text-slate-300">{eventHours} hours</span>
-        </div>
+    <div className="rounded-2xl border-2 border-blue-200 bg-linear-to-br from-blue-50 to-purple-50 p-6">
+      <div className="mb-4 flex items-center gap-2">
+        <CheckCircle size={24} className="text-green-600" />
+        <h3 className="text-lg font-bold text-gray-900">Booking Summary</h3>
       </div>
 
-      {/* Price Breakdown */}
-      <div className="space-y-3 pt-4 border-t border-slate-700/50">
-        <div className="flex justify-between text-sm">
-          <span className="text-slate-400">Service</span>
-          <span className="text-white font-semibold">{formatPrice(pricing.baseServicePrice)}</span>
-        </div>
-
-        {pricing.addOnsTotal > 0 && (
-          <div className="flex justify-between text-sm">
-            <span className="text-slate-400">Add-ons</span>
-            <span className="text-white font-semibold">+{formatPrice(pricing.addOnsTotal)}</span>
+      <div className="space-y-3">
+        {/* Service */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <ShoppingCart size={18} className="text-blue-600" />
+            <span className="text-gray-700">Service:</span>
           </div>
-        )}
-
-        <div className="flex justify-between text-sm">
-          <span className="text-slate-400">Tax</span>
-          <span className="text-white font-semibold">{formatPrice(pricing.taxAmount)}</span>
+          <span className="font-semibold text-gray-900">{selectedService.name}</span>
         </div>
 
-        <div className="flex justify-between pt-3 border-t border-slate-700/50">
-          <span className="text-white font-bold">Total</span>
-          <span className="text-lg font-bold text-cyan-400">{formatPrice(pricing.totalPrice)}</span>
+        {/* Date */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Calendar size={18} className="text-blue-600" />
+            <span className="text-gray-700">Date:</span>
+          </div>
+          <span className="font-semibold text-gray-900">
+            {new Date(selectedDate).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
+          </span>
         </div>
-      </div>
 
-      {/* Booking info */}
-      <div className="p-4 bg-cyan-500/10 border border-cyan-500/50 rounded-lg text-xs text-cyan-400">
-        <p>✓ Secure booking</p>
-        <p>✓ Free cancellation up to 48 hours</p>
-        <p>✓ Instant confirmation</p>
+        {/* Guests */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Users size={18} className="text-blue-600" />
+            <span className="text-gray-700">Guests:</span>
+          </div>
+          <span className="font-semibold text-gray-900">{guestCount}</span>
+        </div>
+
+        {/* Hours */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Clock size={18} className="text-blue-600" />
+            <span className="text-gray-700">Duration:</span>
+          </div>
+          <span className="font-semibold text-gray-900">{hoursAsNumber} hours</span>
+        </div>
+
+        <div className="my-3 border-t-2 border-blue-200" />
+
+        {/* Price Breakdown */}
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between">
+            <span className="text-gray-600">Base price:</span>
+            <span className="text-gray-900">${basePrice.toFixed(2)}</span>
+          </div>
+          {hourlyAdditional > 0 && (
+            <div className="flex justify-between">
+              <span className="text-gray-600">Additional hours:</span>
+              <span className="text-gray-900">${hourlyAdditional.toFixed(2)}</span>
+            </div>
+          )}
+          {optionsTotal > 0 && (
+            <div className="flex justify-between">
+              <span className="text-gray-600">Options:</span>
+              <span className="text-gray-900">${optionsTotal.toFixed(2)}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="my-3 border-t-2 border-blue-300" />
+
+        {/* Total */}
+        <div className="flex justify-between">
+          <span className="text-lg font-bold text-gray-900">Total:</span>
+          <span className="text-2xl font-bold text-transparent bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text">
+            ${totalPrice.toFixed(2)}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -1,56 +1,47 @@
-/**
- * useAvailability Hook
- * - Fetch available dates from API
- * - Handle loading and errors
- * - Cache results
- */
+import { useEffect, useState } from 'react';
 
-import { useState, useEffect, useMemo } from 'react';
-import { api } from '../utils/api';
-
-export interface AvailableDate {
+interface AvailabilityDate {
   date: string;
   isAvailable: boolean;
-  spotsAvailable: number;
   maxBookingsPerDay: number;
 }
 
-export function useAvailability(serviceId: string | null) {
-  const [availableDates, setAvailableDates] = useState<AvailableDate[]>([]);
+export function useAvailability(month: number, year: number) {
+  const [availability, setAvailability] = useState<AvailabilityDate[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!serviceId) {
-      setAvailableDates([]);
-      return;
-    }
-
-    const fetchAvailability = async () => {
+    const checkAvailability = async () => {
       setLoading(true);
       setError(null);
+
       try {
-        const data = await api.getAvailability(serviceId);
-        setAvailableDates(data);
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch availability');
-        setAvailableDates([]);
+        // In a real app, this would be an API call
+        const mockData: AvailabilityDate[] = [];
+        const daysInMonth = new Date(year, month, 0).getDate();
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+          mockData.push({
+            date: dateStr,
+            isAvailable: Math.random() > 0.2, // 80% available
+            maxBookingsPerDay: 10,
+          });
+        }
+
+        setAvailability(mockData);
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to check availability';
+        setError(errorMessage);
+        setAvailability([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchAvailability();
-  }, [serviceId]);
+    checkAvailability();
+  }, [month, year]);
 
-  // Memoize sorted dates
-  const sortedDates = useMemo(() => {
-    return [...availableDates].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  }, [availableDates]);
-
-  return {
-    availableDates: sortedDates,
-    loading,
-    error
-  };
+  return { availability, loading, error };
 }

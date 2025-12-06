@@ -1,13 +1,9 @@
-// src/hooks/useServiceOptions.ts
-
-import { useState, useEffect } from 'react';
-import { api } from '../utils/api';
-import { ServiceOption } from '../types';
+import { useEffect, useState } from 'react';
+import type { ServiceOption } from '../types';
 
 export function useServiceOptions(serviceId: string | null) {
   const [options, setOptions] = useState<ServiceOption[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!serviceId) {
@@ -15,22 +11,32 @@ export function useServiceOptions(serviceId: string | null) {
       return;
     }
 
-    const fetchOptions = async () => {
+    const loadOptions = async () => {
       setLoading(true);
-      setError(null);
       try {
-        const data = await api.getServiceOptions(serviceId);
-        setOptions(data.options || []);
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch options');
+        // In a real app, this would be an API call
+        const mockOptions: ServiceOption[] = [
+          {
+            name: 'Add-ons',
+            values: [
+              { label: 'Premium Decorations', additionalPrice: 50 },
+              { label: 'Professional Photos', additionalPrice: 100 },
+              { label: 'Extended Hours', additionalPrice: 75 },
+            ],
+          },
+        ];
+
+        setOptions(mockOptions);
+      } catch (err) {
+        console.error('Failed to load service options:', err);
         setOptions([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchOptions();
+    loadOptions();
   }, [serviceId]);
 
-  return { options, loading, error };
+  return { options, loading };
 }

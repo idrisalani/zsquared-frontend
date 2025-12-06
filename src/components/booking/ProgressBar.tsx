@@ -1,54 +1,24 @@
-/**
- * Progress Bar Component
- * - Animated step indicator
- * - Shows current step
- * - Professional styling
- */
-
-import React from 'react';
-
 interface ProgressBarProps {
   currentStep: number;
   totalSteps: number;
 }
 
 export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
-  const steps = Array.from({ length: totalSteps }, (_, i) => i + 1);
-  const stepLabels = ['Date', 'Service', 'Details', 'Contact'];
+  const progress = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="space-y-4">
-      {/* Progress line */}
-      <div className="flex gap-2">
-        {steps.map((step) => (
-          <div
-            key={step}
-            className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
-              step <= currentStep
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-500'
-                : 'bg-slate-700/50'
-            }`}
-          />
-        ))}
+    <div className="w-full">
+      <div className="mb-2 flex justify-between">
+        <span className="text-sm font-semibold text-gray-700">
+          Step {currentStep} of {totalSteps}
+        </span>
+        <span className="text-sm font-semibold text-gray-600">{Math.round(progress)}%</span>
       </div>
-
-      {/* Step labels */}
-      <div className="flex justify-between items-center text-xs">
-        {steps.map((step) => (
-          <div
-            key={step}
-            className={`transition ${
-              step === currentStep
-                ? 'text-cyan-400 font-semibold'
-                : step < currentStep
-                ? 'text-cyan-400/70'
-                : 'text-slate-500'
-            }`}
-          >
-            <div className="font-semibold">Step {step}</div>
-            <div className="text-slate-400">{stepLabels[step - 1]}</div>
-          </div>
-        ))}
+      <div className="h-2 w-full rounded-full bg-gray-200">
+        <div
+          className="h-full rounded-full bg-linear-to-r from-blue-600 to-purple-600 transition-all duration-300"
+          style={{ width: `${progress}%` }}
+        />
       </div>
     </div>
   );
