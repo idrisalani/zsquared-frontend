@@ -15,9 +15,10 @@ export interface Service {
   image?: string;
   category?: string;
   duration?: number;
-  minGuests?: number;      // ← Add this
-  minHours?: number;       // ← Add this
+  minGuests?: number;
+  minHours?: number;
   maxGuests?: number;
+  maxHours?: number;
   [key: string]: unknown;
 }
 
