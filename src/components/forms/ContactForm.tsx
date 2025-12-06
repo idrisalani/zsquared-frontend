@@ -6,7 +6,7 @@
  * - Form validation
  */
 
-import type { CustomerInfo } from '../../types';
+import type { CustomerInfo } from '../../types/index';
 
 interface ContactFormProps {
   customerInfo: CustomerInfo;
