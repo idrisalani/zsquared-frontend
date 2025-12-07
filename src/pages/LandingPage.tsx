@@ -13,6 +13,14 @@ import { Zap, Users, Award, ArrowRight, Play } from 'lucide-react';
 export function LandingPage() {
   const navigate = useNavigate();
 
+  const handleBooking = () => {
+    navigate('/booking');
+  };
+
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="w-screen min-h-screen bg-linear-to-br from-white via-blue-50 to-purple-50 overflow-x-hidden">
       {/* Navbar - SINGLE CLEAN VERSION */}
@@ -26,14 +34,16 @@ export function LandingPage() {
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <button className="px-6 py-2 text-gray-700 hover:text-gray-900 font-semibold transition">
+              <button
+                onClick={handleLogin}
+                className="px-6 py-2 text-gray-700 hover:text-gray-900 font-semibold transition">
                 Login
               </button>
               <button
-                onClick={() => navigate('/booking')}
+                onClick={handleBooking}
                 className="px-6 py-2 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition font-semibold"
               >
-                Sign Up
+                Get Started
               </button>
             </div>
           </div>
@@ -166,7 +176,7 @@ export function LandingPage() {
         <div className="w-full">
           <div className="bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 text-9xl opacity-10">✨</div>
-            
+
             <h2 className="text-4xl md:text-5xl font-bold mb-6 relative z-10">
               Ready to Plan Your Event?
             </h2>
