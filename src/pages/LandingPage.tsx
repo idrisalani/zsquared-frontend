@@ -17,9 +17,9 @@ export function LandingPage() {
     navigate('/booking');
   };
 
-  const handleLogin = () => {
-    navigate('/login');
-  };
+  // const handleLogin = () => {
+  //   navigate('/login');
+  // };
 
   return (
     <div className="w-screen min-h-screen bg-linear-to-br from-white via-blue-50 to-purple-50 overflow-x-hidden">
@@ -34,11 +34,11 @@ export function LandingPage() {
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <button
+              {/* <button
                 onClick={handleLogin}
                 className="px-6 py-2 text-gray-700 hover:text-gray-900 font-semibold transition">
                 Login
-              </button>
+              </button> */}
               <button
                 onClick={handleBooking}
                 className="px-6 py-2 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition font-semibold"
