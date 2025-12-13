@@ -22,14 +22,14 @@ export function LandingPage() {
   // };
 
   return (
-    <div className="w-screen min-h-screen bg-linear-to-br from-white via-blue-50 to-purple-50 overflow-x-hidden">
+    <div className="w-screen min-h-screen bg-linear-to-br from-amber-50 via-amber-25 to-yellow-50 overflow-x-hidden">
       {/* Navbar - SINGLE CLEAN VERSION */}
-      <nav className="w-full border-b border-gray-200/50 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+      <nav className="w-screen sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-amber-200/50">
         <div className="w-full px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="text-3xl">🎉</div>
-              <span className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-linear-to-r from-amber-900 to-yellow-700 bg-clip-text text-transparent">
                 ZSquared
               </span>
             </div>
@@ -41,7 +41,7 @@ export function LandingPage() {
               </button> */}
               <button
                 onClick={handleBooking}
-                className="px-6 py-2 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition font-semibold"
+                className="px-6 py-2 bg-linear-to-r from-amber-700 to-yellow-600 text-white font-semibold rounded-lg hover:shadow-lg transition"
               >
                 Get Started
               </button>
@@ -56,30 +56,30 @@ export function LandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div>
-              <div className="inline-block mb-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+              <div className="inline-block mb-4 px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold">
                 ✨ Next-Gen Event Booking Platform
               </div>
 
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-bold text-amber-950 mb-6 leading-tight">
                 Book Your Perfect{' '}
-                <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-amber-700 to-yellow-600 bg-clip-text text-transparent">
                   Event Today
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8">
+              <p className="text-xl text-amber-900 mb-8">
                 Professional event booking platform for entertainment services. From immersive VR experiences to cotton candy machines, we've got everything you need.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <button
                   onClick={() => navigate('/booking')}
-                  className="px-8 py-4 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-2xl hover:shadow-blue-500/50 transition font-bold flex items-center justify-center gap-2 group"
+                  className="px-8 py-4 bg-linear-to-r from-amber-700 to-yellow-600 text-white rounded-xl hover:shadow-2xl hover:shadow-amber-500/50 transition font-bold flex items-center justify-center gap-2 group"
                 >
                   Book Now
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition" />
                 </button>
-                <button className="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:border-gray-400 hover:bg-gray-50 transition font-bold flex items-center justify-center gap-2">
+                <button className="px-8 py-4 border-2 border-amber-300 text-amber-900 rounded-xl hover:border-amber-400 hover:bg-amber-50 transition font-bold flex items-center justify-center gap-2">
                   <Play size={20} />
                   Learn More
                 </button>
@@ -88,40 +88,40 @@ export function LandingPage() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">1000+</div>
-                  <p className="text-gray-600 text-sm">Happy Customers</p>
+                  <div className="text-3xl font-bold text-amber-900">1000+</div>
+                  <p className="text-amber-600 text-sm">Happy Customers</p>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">500+</div>
-                  <p className="text-gray-600 text-sm">Events Booked</p>
+                  <div className="text-3xl font-bold text-amber-900">500+</div>
+                  <p className="text-amber-600 text-sm">Events Booked</p>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">24/7</div>
-                  <p className="text-gray-600 text-sm">Customer Support</p>
+                  <div className="text-3xl font-bold text-amber-900">24/7</div>
+                  <p className="text-amber-600 text-sm">Customer Support</p>
                 </div>
               </div>
             </div>
 
             {/* Right Image */}
             <div className="relative">
-              <div className="absolute inset-0 bg-linear-to-r from-blue-400/30 to-purple-400/30 rounded-3xl blur-3xl"></div>
-              <div className="relative bg-linear-to-br from-blue-100 to-purple-100 rounded-3xl p-8 border border-blue-200/50 backdrop-blur">
+              <div className="absolute inset-0 bg-linear-to-r from-amber-400/30 to-yellow-400/30 rounded-3xl blur-3xl"></div>
+              <div className="relative bg-linear-to-br from-amber-100 to-yellow-100 rounded-3xl p-8 border border-amber-200/50 backdrop-blur">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition">
+                  <div onClick={() => navigate('/booking')} className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition border border-amber-100">
                     <div className="text-4xl mb-2">🎮</div>
-                    <p className="font-semibold text-gray-900">360° VR</p>
+                    <p className="font-semibold text-amber-900">360° VR</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition">
+                  <div onClick={() => navigate('/booking')} className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition border border-amber-100">
                     <div className="text-4xl mb-2">🏠</div>
-                    <p className="font-semibold text-gray-900">Bouncy House</p>
+                    <p className="font-semibold text-amber-900">Bouncy House</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition">
+                  <div onClick={() => navigate('/booking')} className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition border border-amber-100">
                     <div className="text-4xl mb-2">🍭</div>
-                    <p className="font-semibold text-gray-900">Cotton Candy</p>
+                    <p className="font-semibold text-amber-900">Cotton Candy</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition">
+                  <div onClick={() => navigate('/booking')} className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition border border-amber-100">
                     <div className="text-4xl mb-2">📸</div>
-                    <p className="font-semibold text-gray-900">Photo Booth</p>
+                    <p className="font-semibold text-amber-900">Photo Booth</p>
                   </div>
                 </div>
               </div>
@@ -131,13 +131,13 @@ export function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section className="w-full bg-linear-to-b from-transparent to-blue-100/50 px-8 py-20">
+      <section className="w-full bg-linear-to-b from-transparent to-amber-100/50 px-8 py-20">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-amber-900 mb-4">
               Why Choose ZSquared?
             </h2>
-            <p className="text-xl text-gray-600">Everything you need for the perfect event</p>
+            <p className="text-xl text-amber-600">Everything you need for the perfect event</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
