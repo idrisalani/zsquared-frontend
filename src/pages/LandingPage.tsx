@@ -200,32 +200,32 @@ export function LandingPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="text-2xl">🎉</div>
-                <span className="font-bold text-gray-900">ZSquared</span>
+                <span className="font-bold text-amber-900">ZSquared</span>
               </div>
               <p className="text-amber-600">Professional event booking platform.</p>
             </div>
             <div>
               <h4 className="font-bold text-amber-900 mb-4">Services</h4>
               <ul className="space-y-2 text-amber-600">
-                <li><a href="#" className="hover:text-yellow-600">VR Experiences</a></li>
-                <li><a href="#" className="hover:text-yellow-600">Entertainment</a></li>
-                <li><a href="#" className="hover:text-yellow-600">Catering</a></li>
+                <li><a href="#" className="hover:text-amber-600">VR Experiences</a></li>
+                <li><a href="#" className="hover:text-amber-600">Entertainment</a></li>
+                <li><a href="#" className="hover:text-amber-600">Catering</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-amber-900 mb-4">Company</h4>
               <ul className="space-y-2 text-amber-600">
-                <li><a href="#" className="hover:text-yellow-600">About Us</a></li>
-                <li><a href="#" className="hover:text-yellow-600">Contact</a></li>
-                <li><a href="#" className="hover:text-yellow-600">Blog</a></li>
+                <li><a href="#" className="hover:text-amber-600">About Us</a></li>
+                <li><a href="#" className="hover:text-amber-600">Contact</a></li>
+                <li><a href="#" className="hover:text-amber-600">Blog</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-amber-900 mb-4">Legal</h4>
               <ul className="space-y-2 text-amber-600">
-                <li><a href="#" className="hover:text-yellow-600">Privacy</a></li>
-                <li><a href="#" className="hover:text-yellow-600">Terms</a></li>
-                <li><a href="#" className="hover:text-yellow-600">Cookies</a></li>
+                <li><a href="#" className="hover:text-amber-600">Privacy</a></li>
+                <li><a href="#" className="hover:text-amber-600">Terms</a></li>
+                <li><a href="#" className="hover:text-amber-600">Cookies</a></li>
               </ul>
             </div>
           </div>
