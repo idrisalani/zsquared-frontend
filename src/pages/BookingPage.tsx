@@ -177,16 +177,16 @@ export function BookingPage() {
   };
 
   return (
-    <div className="min-h-screen w-screen bg-linear-to-br from-white via-blue-50 to-purple-50">
+    <div className="min-h-screen w-screen bg-linear-to-br from-amber via-amber-50 to-yellow-50">
       {/* Navigation Bar */}
-      <nav className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <nav className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-amber-200">
         <div className="w-full px-4 sm:px-8 py-4">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-linear-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold">
+            <div className="w-8 h-8 rounded-lg bg-linear-to-br from-amber-600 to-yellow-600 flex items-center justify-center text-white font-bold">
               Z
             </div>
-            <span className="text-xl font-bold text-gray-900">ZSquared</span>
-            <div className="ml-auto text-sm font-semibold text-gray-600">
+            <span className="text-xl font-bold text-amber-900">ZSquared</span>
+            <div className="ml-auto text-sm font-semibold text-amber-600">
               Step {currentStep + 1} of 4
             </div>
           </div>
@@ -197,10 +197,10 @@ export function BookingPage() {
       <div className="w-full px-4 sm:px-8 py-8 md:py-16">
         {/* Header - Centered */}
         <div className="max-w-5xl mx-auto mb-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-            Book Your <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Perfect Event</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-3">
+            Book Your <span className="bg-linear-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">Perfect Event</span>
           </h1>
-          <p className="text-lg text-gray-600">Complete your booking in just 4 steps</p>
+          <p className="text-lg text-amber-600">Complete your booking in just 4 steps</p>
         </div>
 
         {/* Progress Indicator - Centered with Step Names Below */}
@@ -231,8 +231,8 @@ export function BookingPage() {
                   className={`
                     w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg transition-all mb-4 relative z-10 bg-white
                     ${currentStep >= step
-                      ? 'bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                      : 'bg-gray-200 text-gray-600 border-4 border-white'
+                      ? 'bg-linear-to-r from-amber-600 to-yellow-600 text-white shadow-lg'
+                      : 'bg-gray-200 text-amber-600 border-4 border-white'
                     }
                   `}
                 >
@@ -242,7 +242,7 @@ export function BookingPage() {
                 {/* Step Name - Centered below */}
                 <p className={`
                   text-sm font-semibold text-center whitespace-nowrap
-                  ${currentStep >= step ? 'text-gray-900' : 'text-gray-500'}
+                  ${currentStep >= step ? 'text-amber-900' : 'text-amber-500'}
                 `}>
                   {STEP_NAMES[step]}
                 </p>
@@ -299,13 +299,13 @@ export function BookingPage() {
           )}
 
           {/* Booking Summary Card */}
-          <div className="mt-12 rounded-2xl border-2 border-gray-200 bg-white p-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Booking Summary</h3>
+          <div className="mt-12 rounded-2xl border-2 border-amber-200 bg-white p-8">
+            <h3 className="text-xl font-bold text-amber-900 mb-6">Booking Summary</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div>
-                <p className="text-sm text-gray-600 font-semibold mb-2">Selected Date</p>
-                <p className="text-lg font-bold text-gray-900">
+                <p className="text-sm text-amber-600 font-semibold mb-2">Selected Date</p>
+                <p className="text-lg font-bold text-amber-900">
                   {bookingState.selectedDate
                     ? new Date(bookingState.selectedDate).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -317,8 +317,8 @@ export function BookingPage() {
               </div>
 
               <div>
-                <p className="text-sm text-gray-600 font-semibold mb-2">Selected Service</p>
-                <p className="text-lg font-bold text-gray-900">
+                <p className="text-sm text-amber-600 font-semibold mb-2">Selected Service</p>
+                <p className="text-lg font-bold text-amber-900">
                   {bookingState.selectedService?.name || 'Not selected'}
                 </p>
               </div>
@@ -336,7 +336,7 @@ export function BookingPage() {
               <button
                 onClick={handlePreviousStep}
                 disabled={currentStep === 0}
-                className="flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-900 rounded-lg hover:border-gray-400 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition font-bold"
+                className="flex items-center gap-2 px-6 py-3 border-2 border-amber-300 text-amber-900 rounded-lg hover:border-amber-400 hover:bg-amber-50 disabled:opacity-50 disabled:cursor-not-allowed transition font-bold"
               >
                 <ChevronLeft size={20} />
                 Previous
@@ -345,7 +345,7 @@ export function BookingPage() {
               {currentStep < 3 ? (
                 <button
                   onClick={handleNextStep}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition font-bold"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-r from-amber-600 to-yellow-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition font-bold"
                 >
                   Next
                   <ChevronRight size={20} />
@@ -353,7 +353,7 @@ export function BookingPage() {
               ) : (
                 <button
                   onClick={handleCompleteBooking}
-                  className="flex-1 px-6 py-3 bg-linear-to-r from-green-600 to-blue-600 text-white rounded-lg hover:shadow-lg hover:shadow-green-500/30 transition font-bold text-lg"
+                  className="flex-1 px-6 py-3 bg-linear-to-r from-green-600 to-amber-600 text-white rounded-lg hover:shadow-lg hover:shadow-green-500/30 transition font-bold text-lg"
                 >
                   ✓ Complete Booking
                 </button>
