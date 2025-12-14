@@ -142,30 +142,30 @@ export function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-blue-300 transition">
-              <div className="w-12 h-12 bg-linear-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-amber-200 hover:shadow-xl hover:border-amber-300 transition">
+              <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center mb-4">
                 <Zap size={24} className="text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
-              <p className="text-gray-600">Book your event in just 4 simple steps. Quick, easy, and hassle-free.</p>
+              <h3 className="text-xl font-bold text-amber-900 mb-3">Lightning Fast</h3>
+              <p className="text-amber-600">Book your event in just 4 simple steps. Quick, easy, and hassle-free.</p>
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-purple-300 transition">
-              <div className="w-12 h-12 bg-linear-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-amber-200 hover:shadow-xl hover:border-purple-300 transition">
+              <div className="w-12 h-12 bg-linear-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-4">
                 <Award size={24} className="text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Quality Guaranteed</h3>
-              <p className="text-gray-600">Premium services with professional staff. Your satisfaction is our priority.</p>
+              <h3 className="text-xl font-bold text-amber-900 mb-3">Quality Guaranteed</h3>
+              <p className="text-amber-600">Premium services with professional staff. Your satisfaction is our priority.</p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:border-pink-300 transition">
-              <div className="w-12 h-12 bg-linear-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-amber-200 hover:shadow-xl hover:border-pink-300 transition">
+              <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-yellow-600 rounded-xl flex items-center justify-center mb-4">
                 <Users size={24} className="text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">24/7 Support</h3>
-              <p className="text-gray-600">Our team is always here to help. Get support whenever you need it.</p>
+              <h3 className="text-xl font-bold text-amber-900 mb-3">24/7 Support</h3>
+              <p className="text-amber-600">Our team is always here to help. Get support whenever you need it.</p>
             </div>
           </div>
         </div>
@@ -174,18 +174,18 @@ export function LandingPage() {
       {/* CTA Section */}
       <section className="w-full px-8 py-20">
         <div className="w-full">
-          <div className="bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden">
+          <div className="bg-linear-to-r from-amber-600 to-yellow-600 rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 text-9xl opacity-10">✨</div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6 relative z-10">
               Ready to Plan Your Event?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 relative z-10">
+            <p className="text-xl text-amber-100 mb-8 relative z-10">
               Join 1000+ happy customers and book your perfect event today
             </p>
             <button
               onClick={() => navigate('/booking')}
-              className="relative z-10 px-8 py-4 bg-white text-blue-600 rounded-xl hover:shadow-2xl transition font-bold text-lg"
+              className="relative z-10 px-8 py-4 bg-white text-amber-600 rounded-xl hover:shadow-2xl transition font-bold text-lg"
             >
               Get Started Now
             </button>
@@ -194,7 +194,7 @@ export function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-gray-50 border-t border-gray-200 px-8 py-12">
+      <footer className="w-full bg-amber-50 border-t border-amber-200 px-8 py-12">
         <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -202,34 +202,34 @@ export function LandingPage() {
                 <div className="text-2xl">🎉</div>
                 <span className="font-bold text-gray-900">ZSquared</span>
               </div>
-              <p className="text-gray-600">Professional event booking platform.</p>
+              <p className="text-amber-600">Professional event booking platform.</p>
             </div>
             <div>
-              <h4 className="font-bold text-gray-900 mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="#" className="hover:text-blue-600">VR Experiences</a></li>
-                <li><a href="#" className="hover:text-blue-600">Entertainment</a></li>
-                <li><a href="#" className="hover:text-blue-600">Catering</a></li>
+              <h4 className="font-bold text-amber-900 mb-4">Services</h4>
+              <ul className="space-y-2 text-amber-600">
+                <li><a href="#" className="hover:text-yellow-600">VR Experiences</a></li>
+                <li><a href="#" className="hover:text-yellow-600">Entertainment</a></li>
+                <li><a href="#" className="hover:text-yellow-600">Catering</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-gray-900 mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="#" className="hover:text-blue-600">About Us</a></li>
-                <li><a href="#" className="hover:text-blue-600">Contact</a></li>
-                <li><a href="#" className="hover:text-blue-600">Blog</a></li>
+              <h4 className="font-bold text-amber-900 mb-4">Company</h4>
+              <ul className="space-y-2 text-amber-600">
+                <li><a href="#" className="hover:text-yellow-600">About Us</a></li>
+                <li><a href="#" className="hover:text-yellow-600">Contact</a></li>
+                <li><a href="#" className="hover:text-yellow-600">Blog</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-gray-900 mb-4">Legal</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="#" className="hover:text-blue-600">Privacy</a></li>
-                <li><a href="#" className="hover:text-blue-600">Terms</a></li>
-                <li><a href="#" className="hover:text-blue-600">Cookies</a></li>
+              <h4 className="font-bold text-amber-900 mb-4">Legal</h4>
+              <ul className="space-y-2 text-amber-600">
+                <li><a href="#" className="hover:text-yellow-600">Privacy</a></li>
+                <li><a href="#" className="hover:text-yellow-600">Terms</a></li>
+                <li><a href="#" className="hover:text-yellow-600">Cookies</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-200 pt-8 text-center text-gray-600">
+          <div className="border-t border-amber-200 pt-8 text-center text-amber-600">
             <p>&copy; 2025 ZSquared. All rights reserved.</p>
           </div>
         </div>
