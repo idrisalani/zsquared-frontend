@@ -130,47 +130,47 @@ export function CalendarStep({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="rounded-2xl border-2 border-blue-200 bg-linear-to-r from-blue-50 to-purple-50 p-8">
+      <div className="rounded-2xl border-2 border-amber-200 bg-linear-to-r from-amber-50 to-yellow-50 p-8">
         <div className="flex items-center gap-3 mb-2">
-          <Calendar size={24} className="text-blue-600" />
-          <h2 className="text-2xl font-bold text-gray-900">Select Your Event Date</h2>
+          <Calendar size={24} className="text-amber-600" />
+          <h2 className="text-2xl font-bold text-amber-900">Select Your Event Date</h2>
         </div>
-        <p className="text-gray-600">Choose when you want to book your event</p>
+        <p className="text-amber-600">Choose when you want to book your event</p>
       </div>
 
       {/* Calendar */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-white p-8">
+      <div className="rounded-2xl border-2 border-amber-200 bg-white p-8">
         {/* Month/Year Navigation */}
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
             className="p-2 rounded-lg border-2 border-gray-300 hover:border-blue-500 transition"
           >
-            <ChevronLeft size={20} className="text-gray-600" />
+            <ChevronLeft size={20} className="text-amber-600" />
           </button>
 
-          <h2 className="text-xl font-bold text-gray-900">{monthYear}</h2>
+          <h2 className="text-xl font-bold text-amber-900">{monthYear}</h2>
 
           <button
             onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))}
-            className="p2 rounded-lg border-2 border-gray-300 hover:border-blue-500 transition"
+            className="p2 rounded-lg border-2 border-gray-300 hover:border-amber-500 transition"
           >
-            <ChevronRight size={20} className="text-gray-600" />
+            <ChevronRight size={20} className="text-amber-600" />
           </button>
         </div>
 
         {/* Availability Loading */}
         {loadingAvailability && (
-          <div className="mb-4 p-3 bg-blue-100 border-2 border-blue-300 rounded-lg flex items-center gap-2 animate-pulse">
-            <div className="text-blue-600">⏳</div>
-            <p className="text-blue-900 font-semibold text-sm">Checking availability...</p>
+          <div className="mb-4 p-3 bg-blue-100 border-2 border-amber-300 rounded-lg flex items-center gap-2 animate-pulse">
+            <div className="text-amber-600">⏳</div>
+            <p className="text-amber-900 font-semibold text-sm">Checking availability...</p>
           </div>
         )}
 
         {/* Day Headers */}
         <div className="grid grid-cols-7 gap-2 mb-4">
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-            <div key={day} className="text-center font-semibold text-gray-600 text-sm py-2">
+            <div key={day} className="text-center font-semibold text-amber-600 text-sm py-2">
               {day}
             </div>
           ))}
@@ -198,14 +198,14 @@ export function CalendarStep({
                 className={`
                   aspect-square rounded-lg border-2 font-bold transition text-sm relative group
                   ${isSelected
-                    ? 'bg-linear-to-r from-blue-600 to-purple-600 text-white border-blue-600 shadow-lg'
+                    ? 'bg-linear-to-r from-amber-600 to-yellow-600 text-white border-blue-600 shadow-lg'
                     : isToday
-                    ? 'border-blue-400 bg-blue-50 text-gray-900'
+                    ? 'border-amber-400 bg-amber-50 text-amber-900'
                     : isBooked
                     ? 'border-red-400 bg-red-100 text-red-700 cursor-not-allowed hover:bg-red-100'
                     : isPast
-                    ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'border-gray-300 text-gray-900 hover:border-blue-500 hover:bg-blue-50'
+                    ? 'border-amber-200 bg-amber-100 text-amber-400 cursor-not-allowed'
+                    : 'border-amber-300 text-amber-900 hover:border-amber-500 hover:bg-amber-50'
                   }
                 `}
               >
@@ -220,7 +220,7 @@ export function CalendarStep({
 
                 {/* Tooltip on hover */}
                 {isBooked && (
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none z-10">
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-amber-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none z-10">
                     Already booked
                   </div>
                 )}
@@ -232,20 +232,20 @@ export function CalendarStep({
         {/* Legend */}
         <div className="mt-6 flex items-center justify-center gap-3 flex-wrap text-sm">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 border-2 border-blue-400 bg-blue-50 rounded"></div>
-            <span className="text-gray-600">Today</span>
+            <div className="w-3 h-3 border-2 border-amber-400 bg-amber-50 rounded"></div>
+            <span className="text-amber-600">Today</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-linear-to-r from-blue-600 to-purple-600 rounded"></div>
-            <span className="text-gray-600">Selected</span>
+            <div className="w-3 h-3 bg-linear-to-r from-amber-600 to-yellow-600 rounded"></div>
+            <span className="text-amber-600">Selected</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 border-2 border-red-400 bg-red-100 rounded text-center text-xs">🔒</div>
-            <span className="text-gray-600">Booked</span>
+            <span className="text-amber-600">Booked</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 border-2 border-gray-200 bg-gray-100 rounded"></div>
-            <span className="text-gray-600">Past</span>
+            <div className="w-3 h-3 border-2 border-amber-200 bg-amber-100 rounded"></div>
+            <span className="text-amber-600">Past</span>
           </div>
         </div>
       </div>
@@ -270,7 +270,7 @@ export function CalendarStep({
             <div className="text-2xl">✓</div>
             <div>
               <p className="text-sm text-green-600 font-semibold">Date Selected</p>
-              <p className="text-lg font-bold text-gray-900">
+              <p className="text-lg font-bold text-amber-900">
                 {stringToDate(selectedDate).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
