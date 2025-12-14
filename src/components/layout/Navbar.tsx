@@ -17,11 +17,11 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 glass border-b border-slate-700/50 px-6 py-4">
+    <nav className="sticky top-0 z-50 glass border-b border-amber-700/50 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <span className="text-3xl">🎉</span>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
             ZSquared
           </h1>
         </div>
@@ -37,7 +37,7 @@ export function Navbar() {
               </button>
               <button
                 onClick={() => navigate('/admin')}
-                className="px-6 py-2 border border-slate-700 text-white rounded-lg hover:bg-slate-800 transition flex items-center gap-2"
+                className="px-6 py-2 border border-amber-700 text-white rounded-lg hover:bg-amber-800 transition flex items-center gap-2"
               >
                 <User size={18} />
                 Admin
