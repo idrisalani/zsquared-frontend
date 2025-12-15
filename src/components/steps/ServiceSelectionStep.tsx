@@ -88,9 +88,9 @@ export function ServiceSelectionStep({
   return (
     <div className="w-full space-y-6">
       {/* Header Card */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-white p-8">
-        <h3 className="mb-2 text-2xl font-bold text-gray-900">Choose Your Service</h3>
-        <p className="text-gray-600">Select the entertainment or catering service you want to book</p>
+      <div className="rounded-2xl border-2 border-amber-200 bg-white p-8">
+        <h3 className="mb-2 text-2xl font-bold text-amber-900">Choose Your Service</h3>
+        <p className="text-amber-600">Select the entertainment or catering service you want to book</p>
 
         {/* Error Message */}
         {error && (
@@ -112,8 +112,8 @@ export function ServiceSelectionStep({
               className={`
                 rounded-2xl border-2 p-6 text-left transition-all duration-200 group
                 ${selectedServiceId === service.id
-                  ? 'border-blue-600 bg-linear-to-br from-blue-50 to-purple-50 shadow-lg'
-                  : 'border-gray-200 bg-white hover:border-blue-300 hover:shadow-md'
+                  ? 'border-blue-600 bg-linear-to-br from-amber-50 to-yellow-50 shadow-lg'
+                  : 'border-gray-200 bg-white hover:border-amber-300 hover:shadow-md'
                 }
               `}
             >
@@ -122,33 +122,33 @@ export function ServiceSelectionStep({
 
               {/* Title */}
               <h4 className={`text-lg font-bold mb-2 ${
-                selectedServiceId === service.id ? 'text-blue-900' : 'text-gray-900'
+                selectedServiceId === service.id ? 'text-amber-900' : 'text-amber-900'
               }`}>
                 {service.name}
               </h4>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 mb-4 line-clamp-2">{service.description}</p>
+              <p className="text-sm text-amber-600 mb-4 line-clamp-2">{service.description}</p>
 
               {/* Details Grid */}
-              <div className="space-y-2 mb-4 pb-4 border-t border-gray-200 pt-4">
+              <div className="space-y-2 mb-4 pb-4 border-t border-amber-200 pt-4">
                 {durationHours > 0 && (
                   <div className="flex items-center gap-2 text-sm">
-                    <Clock size={16} className="text-blue-600" />
-                    <span className="text-gray-600">{durationHours}h duration</span>
+                    <Clock size={16} className="text-amber-600" />
+                    <span className="text-amber-600">{durationHours}h duration</span>
                   </div>
                 )}
                 <div className="flex items-center gap-2 text-sm">
-                  <Users size={16} className="text-blue-600" />
-                  <span className="text-gray-600">{service.minGuests}-{service.maxGuests} guests</span>
+                  <Users size={16} className="text-amber-600" />
+                  <span className="text-amber-600">{service.minGuests}-{service.maxGuests} guests</span>
                 </div>
               </div>
 
               {/* Price Section */}
-              <div className="flex items-end justify-between pt-4 border-t border-gray-200">
-                <span className="text-xs text-gray-600">Starting at</span>
+              <div className="flex items-end justify-between pt-4 border-t border-amber-200">
+                <span className="text-xs text-amber-600">Starting at</span>
                 <div className="text-right">
-                  <div className="text-3xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <div className="text-3xl font-bold bg-linear-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
                     ${service.basePrice}
                   </div>
                 </div>
@@ -156,7 +156,7 @@ export function ServiceSelectionStep({
 
               {/* Selection Indicator */}
               {selectedServiceId === service.id && (
-                <div className="mt-4 flex items-center justify-center gap-2 py-2 px-3 bg-blue-600 rounded-lg">
+                <div className="mt-4 flex items-center justify-center gap-2 py-2 px-3 bg-amber-600 rounded-lg">
                   <Zap size={16} className="text-white" />
                   <span className="text-sm font-semibold text-white">Selected</span>
                 </div>
