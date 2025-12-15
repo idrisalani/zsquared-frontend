@@ -49,9 +49,9 @@ export function ContactStep({
   return (
     <div className="w-full space-y-6">
       {/* Header Card */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-white p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">Your Contact Information</h3>
-        <p className="text-gray-600">We need these details to confirm your booking</p>
+      <div className="rounded-2xl border-2 border-amber-200 bg-white p-8">
+        <h3 className="text-2xl font-bold text-amber-900 mb-2">Your Contact Information</h3>
+        <p className="text-amber-600">We need these details to confirm your booking</p>
 
         {/* Error Message */}
         {error && (
@@ -63,7 +63,7 @@ export function ContactStep({
       </div>
 
       {/* Contact Form */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-white p-8 space-y-6">
+      <div className="rounded-2xl border-2 border-amber-200 bg-white p-8 space-y-6">
         {/* Name Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -79,7 +79,7 @@ export function ContactStep({
                 onChange={handleChange}
                 placeholder="John"
                 className={`
-                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-gray-900 placeholder-gray-500 transition
+                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-amber-900 placeholder-gray-500 transition
                   ${isFieldComplete('firstName')
                     ? 'border-green-300 focus:border-green-500'
                     : 'border-gray-300 focus:border-blue-500'
@@ -93,11 +93,11 @@ export function ContactStep({
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-amber-900 mb-2">
               Last Name <span className="text-red-500">*</span>
             </label>
             <div className="relative">
-              <User size={18} className="absolute left-3 top-3 text-gray-400" />
+              <User size={18} className="absolute left-3 top-3 text-amber-400" />
               <input
                 type="text"
                 name="lastName"
@@ -105,10 +105,10 @@ export function ContactStep({
                 onChange={handleChange}
                 placeholder="Doe"
                 className={`
-                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-gray-900 placeholder-gray-500 transition
+                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-amber-900 placeholder-gray-500 transition
                   ${isFieldComplete('lastName')
                     ? 'border-green-300 focus:border-green-500'
-                    : 'border-gray-300 focus:border-blue-500'
+                    : 'border-amber-300 focus:border-amber-500'
                   } focus:outline-none
                 `}
               />
@@ -122,11 +122,11 @@ export function ContactStep({
         {/* Contact Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-amber-900 mb-2">
               Email Address <span className="text-red-500">*</span>
             </label>
             <div className="relative">
-              <Mail size={18} className="absolute left-3 top-3 text-gray-400" />
+              <Mail size={18} className="absolute left-3 top-3 text-amber-400" />
               <input
                 type="email"
                 name="email"
@@ -134,10 +134,10 @@ export function ContactStep({
                 onChange={handleChange}
                 placeholder="you@example.com"
                 className={`
-                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-gray-900 placeholder-gray-500 transition
+                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-gray-900 placeholder-amber-500 transition
                   ${isFieldComplete('email')
                     ? 'border-green-300 focus:border-green-500'
-                    : 'border-gray-300 focus:border-blue-500'
+                    : 'border-amber-300 focus:border-amber-500'
                   } focus:outline-none
                 `}
               />
@@ -148,11 +148,11 @@ export function ContactStep({
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-amber-900 mb-2">
               Phone Number <span className="text-red-500">*</span>
             </label>
             <div className="relative">
-              <Phone size={18} className="absolute left-3 top-3 text-gray-400" />
+              <Phone size={18} className="absolute left-3 top-3 text-amber-400" />
               <input
                 type="tel"
                 name="phone"
@@ -160,10 +160,10 @@ export function ContactStep({
                 onChange={handleChange}
                 placeholder="+1 (555) 123-4567"
                 className={`
-                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-gray-900 placeholder-gray-500 transition
+                  w-full pl-10 pr-4 py-3 rounded-lg border-2 bg-white text-amber-900 placeholder-amber-500 transition
                   ${isFieldComplete('phone')
                     ? 'border-green-300 focus:border-green-500'
-                    : 'border-gray-300 focus:border-blue-500'
+                    : 'border-amber-300 focus:border-amber-500'
                   } focus:outline-none
                 `}
               />
@@ -176,25 +176,25 @@ export function ContactStep({
 
         {/* Address Fields */}
         <div>
-          <label className="block text-sm font-semibold text-gray-900 mb-2">
-            Street Address <span className="text-gray-500">(Optional)</span>
+          <label className="block text-sm font-semibold text-amber-900 mb-2">
+            Street Address <span className="text-amber-500">(Optional)</span>
           </label>
           <div className="relative">
-            <MapPin size={18} className="absolute left-3 top-3 text-gray-400" />
+            <MapPin size={18} className="absolute left-3 top-3 text-amber-400" />
             <input
               type="text"
               name="streetAddress"
               value={customerInfo.streetAddress || ''}
               onChange={handleChange}
               placeholder="123 Main Street"
-              className="w-full pl-10 pr-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none transition"
+              className="w-full pl-10 pr-4 py-3 rounded-lg border-2 border-amber-300 bg-white text-amber-900 placeholder-amber-500 focus:border-amber-500 focus:outline-none transition"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-amber-900 mb-2">
               City <span className="text-gray-500">(Optional)</span>
             </label>
             <input
@@ -208,8 +208,8 @@ export function ContactStep({
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Postal Code <span className="text-gray-500">(Optional)</span>
+            <label className="block text-sm font-semibold text-amber-900 mb-2">
+              Zip/Postal Code <span className="text-amber-500">(Optional)</span>
             </label>
             <input
               type="text"
@@ -217,25 +217,25 @@ export function ContactStep({
               value={customerInfo.postalCode || ''}
               onChange={handleChange}
               placeholder="10001"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none transition"
+              className="w-full px-4 py-3 rounded-lg border-2 border-amber-300 bg-white text-amber-900 placeholder-amber-500 focus:border-amber-500 focus:outline-none transition"
             />
           </div>
         </div>
 
         {/* Additional Notes */}
         <div>
-          <label className="block text-sm font-semibold text-gray-900 mb-2">
-            Special Requests <span className="text-gray-500">(Optional)</span>
+          <label className="block text-sm font-semibold text-amber-900 mb-2">
+            Special Requests <span className="text-amber-500">(Optional)</span>
           </label>
           <div className="relative">
-            <FileText size={18} className="absolute left-3 top-3 text-gray-400" />
+            <FileText size={18} className="absolute left-3 top-3 text-amber-400" />
             <textarea
               name="additionalNotes"
               value={customerInfo.additionalNotes || ''}
               onChange={handleChange}
               placeholder="Any special requests or notes for the vendor..."
               rows={4}
-              className="w-full pl-10 pr-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none transition resize-none"
+              className="w-full pl-10 pr-4 py-3 rounded-lg border-2 border-amber-300 bg-white text-amber-900 placeholder-amber-500 focus:border-amber-500 focus:outline-none transition resize-none"
             />
           </div>
         </div>
@@ -267,8 +267,8 @@ export function ContactStep({
       </div>
 
       {/* Required Fields Indicator */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-gray-50 p-6">
-        <p className="text-sm text-gray-600">
+      <div className="rounded-2xl border-2 border-amber-200 bg-amber-50 p-6">
+        <p className="text-sm text-amber-600">
           <span className="font-semibold">*</span> Required fields
         </p>
       </div>
