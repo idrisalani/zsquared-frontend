@@ -183,90 +183,90 @@ export function CustomizationStep({
   return (
     <div className="space-y-6">
       {/* Service Summary Card */}
-      <div className="rounded-2xl border-2 border-blue-200 bg-linear-to-r from-blue-50 to-purple-50 p-8">
+      <div className="rounded-2xl border-2 border-amber-200 bg-linear-to-r from-amber-50 to-yellow-50 p-8">
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-sm text-blue-600 font-semibold mb-1">Currently Selected</p>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">{service?.name}</h3>
-            <p className="text-gray-600">{service?.description}</p>
+            <p className="text-sm text-amber-600 font-semibold mb-1">Currently Selected</p>
+            <h3 className="text-2xl font-bold text-amber-900 mb-2">{service?.name}</h3>
+            <p className="text-amber-600">{service?.description}</p>
           </div>
           <div className="text-4xl">{service?.image}</div>
         </div>
       </div>
 
       {/* Guest Count Card */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-white p-8">
+      <div className="rounded-2xl border-2 border-amber-200 bg-white p-8">
         <div className="flex items-center gap-3 mb-6">
-          <Users size={24} className="text-blue-600" />
-          <h3 className="text-xl font-bold text-gray-900">Number of Guests</h3>
+          <Users size={24} className="text-amber-600" />
+          <h3 className="text-xl font-bold text-amber-900">Number of Guests</h3>
         </div>
 
-        <p className="text-gray-600 mb-6">How many guests will be attending your event?</p>
+        <p className="text-amber-600 mb-6">How many guests will be attending your event?</p>
 
         <div className="flex items-center justify-center gap-8 mb-6">
           <button
             onClick={() => handleGuestCountChange(-1)}
             disabled={guestCount <= minGuests}
-            className="p-3 rounded-lg border-2 border-gray-300 hover:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            className="p-3 rounded-lg border-2 border-amber-300 hover:border-amber-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            <ChevronDown size={24} className="text-gray-600" />
+            <ChevronDown size={24} className="text-amber-600" />
           </button>
 
           <div className="text-center">
-            <p className="text-5xl font-bold text-blue-600">{guestCount}</p>
-            <p className="text-gray-600 mt-2">guests</p>
+            <p className="text-5xl font-bold text-amber-600">{guestCount}</p>
+            <p className="text-amber-600 mt-2">guests</p>
           </div>
 
           <button
             onClick={() => handleGuestCountChange(1)}
             disabled={guestCount >= maxGuests}
-            className="p-3 rounded-lg border-2 border-gray-300 hover:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            className="p-3 rounded-lg border-2 border-amber-300 hover:border-amber-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            <ChevronUp size={24} className="text-gray-600" />
+            <ChevronUp size={24} className="text-amber-600" />
           </button>
         </div>
 
-        <div className="p-4 bg-blue-100 border-2 border-blue-300 rounded-lg">
-          <p className="text-blue-900 font-semibold">
+        <div className="p-4 bg-amber-100 border-2 border-amber-300 rounded-lg">
+          <p className="text-amber-900 font-semibold">
             Valid range: {minGuests} - {maxGuests} guests
           </p>
         </div>
       </div>
 
       {/* Extend Duration Card */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-white p-8">
+      <div className="rounded-2xl border-2 border-amber-200 bg-white p-8">
         <div className="flex items-center gap-3 mb-6">
-          <Clock size={24} className="text-blue-600" />
-          <h3 className="text-xl font-bold text-gray-900">Extend Duration</h3>
+          <Clock size={24} className="text-amber-600" />
+          <h3 className="text-xl font-bold text-amber-900">Extend Duration</h3>
         </div>
 
-        <p className="text-gray-600 mb-6">Add additional hours to your booking ($50/hour)</p>
+        <p className="text-amber-600 mb-6">Add additional hours to your booking ($50/hour)</p>
 
         <div className="flex items-center justify-center gap-8 mb-6">
           <button
             onClick={() => handleHoursChange(-1)}
             disabled={additionalHours <= 0}
-            className="p-3 rounded-lg border-2 border-gray-300 hover:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            className="p-3 rounded-lg border-2 border-amber-300 hover:border-amber-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            <ChevronDown size={24} className="text-gray-600" />
+            <ChevronDown size={24} className="text-amber-600" />
           </button>
 
           <div className="text-center">
-            <p className="text-5xl font-bold text-blue-600">{additionalHours}</p>
-            <p className="text-gray-600 mt-2">additional hours</p>
+            <p className="text-5xl font-bold text-amber-600">{additionalHours}</p>
+            <p className="text-amber-600 mt-2">additional hours</p>
           </div>
 
           <button
             onClick={() => handleHoursChange(1)}
-            className="p-3 rounded-lg border-2 border-gray-300 hover:border-blue-500 transition"
+            className="p-3 rounded-lg border-2 border-amber-300 hover:border-blue-500 transition"
           >
-            <ChevronUp size={24} className="text-gray-600" />
+            <ChevronUp size={24} className="text-amber-600" />
           </button>
         </div>
 
         {additionalHours > 0 && (
-          <div className="p-4 bg-blue-100 border-2 border-blue-300 rounded-lg">
-            <p className="text-blue-900 font-semibold">
+          <div className="p-4 bg-blue-100 border-2 border-amber-300 rounded-lg">
+            <p className="text-amber-900 font-semibold">
               Additional hours cost: ${(additionalHours * 50).toFixed(2)}
             </p>
           </div>
@@ -274,13 +274,13 @@ export function CustomizationStep({
       </div>
 
       {/* Add-Ons Card */}
-      <div className="rounded-2xl border-2 border-gray-200 bg-white p-8">
+      <div className="rounded-2xl border-2 border-amber-200 bg-white p-8">
         <div className="flex items-center gap-3 mb-6">
-          <Zap size={24} className="text-blue-600" />
-          <h3 className="text-xl font-bold text-gray-900">Add-On Options</h3>
+          <Zap size={24} className="text-amber-600" />
+          <h3 className="text-xl font-bold text-amber-900">Add-On Options</h3>
         </div>
 
-        <p className="text-gray-600 mb-6">Enhance your booking with premium options</p>
+        <p className="text-amber-600 mb-6">Enhance your booking with premium options</p>
 
         <div className="space-y-3">
           {availableAddOns.map(addon => (
@@ -305,8 +305,8 @@ export function CustomizationStep({
                 />
                 <div className="text-2xl">{addon.icon}</div>
                 <div className="flex-1">
-                  <h4 className="font-bold text-gray-900">{addon.name}</h4>
-                  <p className="text-sm text-gray-600">{addon.description}</p>
+                  <h4 className="font-bold text-amber-900">{addon.name}</h4>
+                  <p className="text-sm text-amber-600">{addon.description}</p>
                 </div>
                 <p className="text-green-600 font-bold text-lg">+${addon.price}</p>
               </div>
@@ -317,18 +317,18 @@ export function CustomizationStep({
 
       {/* Price Summary Card */}
       <div className="rounded-2xl border-2 border-green-300 bg-green-50 p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-6">Price Summary</h3>
+        <h3 className="text-xl font-bold text-amber-900 mb-6">Price Summary</h3>
 
         <div className="space-y-3 mb-6">
           <div className="flex justify-between items-center pb-3 border-b-2 border-green-200">
-            <p className="text-gray-700">Base service</p>
-            <p className="font-semibold text-gray-900">${basePrice.toFixed(2)}</p>
+            <p className="text-amber-700">Base service</p>
+            <p className="font-semibold text-amber-900">${basePrice.toFixed(2)}</p>
           </div>
 
           {additionalHours > 0 && (
             <div className="flex justify-between items-center pb-3 border-b-2 border-green-200">
-              <p className="text-gray-700">{additionalHours}h additional @ $50/hr</p>
-              <p className="font-semibold text-gray-900">${hoursPrice.toFixed(2)}</p>
+              <p className="text-amber-700">{additionalHours}h additional @ $50/hr</p>
+              <p className="font-semibold text-amber-900">${hoursPrice.toFixed(2)}</p>
             </div>
           )}
 
@@ -336,16 +336,16 @@ export function CustomizationStep({
             <>
               {selectedAddOnsDetails.map(addon => (
                 <div key={addon.id} className="flex justify-between items-center pb-3 border-b-2 border-green-200">
-                  <p className="text-gray-700">{addon.name}</p>
-                  <p className="font-semibold text-gray-900">+${addon.price.toFixed(2)}</p>
+                  <p className="text-amber-700">{addon.name}</p>
+                  <p className="font-semibold text-amber-900">+${addon.price.toFixed(2)}</p>
                 </div>
               ))}
             </>
           )}
 
           <div className="flex justify-between items-center pt-3">
-            <p className="text-lg font-bold text-gray-900">Total Price</p>
-            <p className="text-3xl font-bold bg-linear-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            <p className="text-lg font-bold text-amber-900">Total Price</p>
+            <p className="text-3xl font-bold bg-linear-to-r from-green-600 to-amber-600 bg-clip-text text-transparent">
               ${totalPrice.toFixed(2)}
             </p>
           </div>
