@@ -135,7 +135,7 @@ export function LandingPage() {
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-amber-900 mb-4">
-              Why Choose ZSquared?
+              Why Choose Pophauseventz?
             </h2>
             <p className="text-xl text-amber-600">Everything you need for the perfect event</p>
           </div>
@@ -230,7 +230,7 @@ export function LandingPage() {
             </div>
           </div>
           <div className="border-t border-amber-200 pt-8 text-center text-amber-600">
-            <p>&copy; 2025 ZSquared. All rights reserved.</p>
+            <p>&copy; 2025 Pophauseventz. All rights reserved.</p>
           </div>
         </div>
       </footer>
