@@ -183,9 +183,9 @@ export function BookingPage() {
         <div className="w-full px-4 sm:px-8 py-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-linear-to-br from-amber-600 to-yellow-600 flex items-center justify-center text-white font-bold">
-              Z
+              P
             </div>
-            <span className="text-xl font-bold text-amber-900">ZSquared</span>
+            <span className="text-xl font-bold text-amber-900">Pophauseventz</span>
             <div className="ml-auto text-sm font-semibold text-amber-600">
               Step {currentStep + 1} of 4
             </div>
