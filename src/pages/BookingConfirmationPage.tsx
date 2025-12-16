@@ -360,7 +360,7 @@ export function BookingConfirmationPage() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition font-bold">
+            <button className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-amber-600 border-2 border-amber-600 text-amber-600 rounded-lg hover:bg-amber-700 transition font-bold">
               <Download size={20} />
               Download Booking Report
             </button>
