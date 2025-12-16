@@ -30,7 +30,7 @@ export function LandingPage() {
             <div className="flex items-center gap-3">
               <div className="text-3xl">🎉</div>
               <span className="text-2xl font-bold bg-linear-to-r from-amber-900 to-yellow-700 bg-clip-text text-transparent">
-                ZSquared
+                Pophauseventz
               </span>
             </div>
             <div className="flex items-center gap-4">
@@ -68,7 +68,7 @@ export function LandingPage() {
               </h1>
 
               <p className="text-xl text-amber-900 mb-8">
-                Professional event booking platform for entertainment services. From immersive VR experiences to cotton candy machines, we've got everything you need.
+                Professional event booking platform for entertainment services. From immersive 360° video booth experiences to cotton candy machines, we've got everything you need.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -109,7 +109,7 @@ export function LandingPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div onClick={() => navigate('/booking')} className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition border border-amber-100">
                     <div className="text-4xl mb-2">🎮</div>
-                    <p className="font-semibold text-amber-900">360° VR</p>
+                    <p className="font-semibold text-amber-900">Immerse 360° Video Booth</p>
                   </div>
                   <div onClick={() => navigate('/booking')} className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition border border-amber-100">
                     <div className="text-4xl mb-2">🏠</div>
@@ -200,7 +200,7 @@ export function LandingPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="text-2xl">🎉</div>
-                <span className="font-bold text-amber-900">ZSquared</span>
+                <span className="font-bold text-amber-900">Pophauseventz</span>
               </div>
               <p className="text-amber-600">Professional event booking platform.</p>
             </div>
